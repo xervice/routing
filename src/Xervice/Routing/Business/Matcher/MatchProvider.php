@@ -4,7 +4,6 @@
 namespace Xervice\Routing\Business\Matcher;
 
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 
 class MatchProvider implements MatchProviderInterface
