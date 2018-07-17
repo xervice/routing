@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<DataProviders
+  xmlns="xervice:dataprovider-01"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="xervice:dataprovider-01 http://static.xervice.online/schema/dataprovider.schema.xsd"
+>
+
+    <DataProvider name="Route">
+        <DataElement name="Name" type="string"/>
+        <DataElement name="Path" default="/" type="string"/>
+        <DataElement name="Host" type="string"/>
+        <DataElement name="Schemes" type="array"/>
+        <DataElement name="Methods" type="array"/>
+        <DataElement name="Defaults" type="array"/>
+        <DataElement name="Requirements" type="array"/>
+        <DataElement name="Options" type="array"/>
+        <DataElement name="Condition" type="string"/>
+    </DataProvider>
+
+    <DataProvider name="RouteCollection">
+        <DataElement name="Routes" singleton="Route" type="Route[]"/>
+    </DataProvider>
+
+</DataProviders>
