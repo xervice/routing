@@ -10,14 +10,13 @@ use Xervice\Core\Facade\AbstractFacade;
 /**
  * @method \Xervice\Routing\RoutingFactory getFactory()
  * @method \Xervice\Routing\RoutingConfig getConfig()
- * @method \Xervice\Routing\RoutingClient getClient()
  */
 class RoutingFacade extends AbstractFacade
 {
     /**
      * @param \DataProvider\RouteCollectionDataProvider $dataProvider
      */
-    public function addRoutes(RouteCollectionDataProvider $dataProvider)
+    public function addRoutes(RouteCollectionDataProvider $dataProvider): void
     {
         $this->getFactory()->getRouteCollection()->addRouteCollection($dataProvider);
     }

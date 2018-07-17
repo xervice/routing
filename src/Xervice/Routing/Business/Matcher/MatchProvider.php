@@ -27,6 +27,9 @@ class MatchProvider implements MatchProviderInterface
      * @param string $url
      *
      * @return array
+     * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
+     * @throws \Symfony\Component\Routing\Exception\NoConfigurationException
+     * @throws \Symfony\Component\Routing\Exception\MethodNotAllowedException
      */
     public function match(string $url): array
     {
