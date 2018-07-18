@@ -80,4 +80,38 @@ class IntegrationTest extends \Codeception\Test\Unit
             $result['_controller']()
         );
     }
+
+
+    /**
+     * @group Xervice
+     * @group Routing
+     * @group Integration
+     */
+    public function testRoutingWithParams()
+    {
+        $route = new RouteDataProvider();
+        $route
+            ->setName('Testing')
+            ->setMethods(['GET'])
+            ->setPath('/test3/{param}')
+            ->setDefaults(
+                [
+                    '_controller' => function () {
+                        return 'TEST';
+                    }
+                ]
+            );
+
+        $routeList = new RouteCollectionDataProvider();
+        $routeList->addRoute($route);
+
+        $this->getFacade()->addRoutes($routeList);
+
+        $result = $this->getFacade()->matchUrl('/test3/unit');
+
+        $this->assertEquals(
+            'TEST',
+            $result['_controller']($result)
+        );
+    }
 }
