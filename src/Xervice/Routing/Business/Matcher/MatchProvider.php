@@ -15,13 +15,20 @@ class MatchProvider implements MatchProviderInterface
     private $urlMatcher;
 
     /**
-     * Matcher constructor.
+     * @var \Symfony\Component\HttpFoundation\Request
+     */
+    private $request;
+
+    /**
+     * MatchProvider constructor.
      *
      * @param \Symfony\Component\Routing\Matcher\UrlMatcher $urlMatcher
+     * @param \Symfony\Component\HttpFoundation\Request $request
      */
-    public function __construct(UrlMatcher $urlMatcher)
+    public function __construct(UrlMatcher $urlMatcher, Request $request)
     {
         $this->urlMatcher = $urlMatcher;
+        $this->request = $request;
     }
 
     /**
@@ -38,12 +45,10 @@ class MatchProvider implements MatchProviderInterface
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return array
      */
-    public function matchRequest(Request $request): array
+    public function matchRequest(): array
     {
-        return $this->urlMatcher->matchRequest($request);
+        return $this->urlMatcher->matchRequest($this->request);
     }
 }

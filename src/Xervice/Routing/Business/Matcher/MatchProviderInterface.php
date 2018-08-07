@@ -14,9 +14,7 @@ interface MatchProviderInterface
     public function match(string $url): array;
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return array
      */
-    public function matchRequest(Request $request): array;
+    public function matchRequest(): array;
 }

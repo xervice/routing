@@ -5,6 +5,7 @@ namespace Xervice\Routing;
 
 
 use DataProvider\RoutingContextDataProvider;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection as SymfonyRouteCollection;
@@ -30,7 +31,8 @@ class RoutingFactory extends AbstractFactory
     public function createMatcher(): MatchProviderInterface
     {
         return new MatchProvider(
-            $this->createUrlMatcher()
+            $this->createUrlMatcher(),
+            $this->createRequest()
         );
     }
 
@@ -50,9 +52,20 @@ class RoutingFactory extends AbstractFactory
      */
     public function createRequestContext(): RequestContext
     {
-        return new RequestContext(
-            $this->createContext()->getContext()
+        $context = new RequestContext();
+        $context->fromRequest(
+            $this->createRequest()
         );
+
+        return $context;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    public function createRequest(): Request
+    {
+        return Request::createFromGlobals();
     }
 
     /**
