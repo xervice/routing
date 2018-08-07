@@ -5,6 +5,7 @@ namespace Xervice\Routing;
 
 
 use DataProvider\RouteCollectionDataProvider;
+use Symfony\Component\HttpFoundation\Request;
 use Xervice\Core\Facade\AbstractFacade;
 
 /**
@@ -37,5 +38,15 @@ class RoutingFacade extends AbstractFacade
     public function matchUrl(string $url): array
     {
         return $this->getFactory()->createMatcher()->match($url);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return array
+     */
+    public function matchRequest(Request $request): array
+    {
+        return $this->getFactory()->createMatcher()->matchRequest($request);
     }
 }

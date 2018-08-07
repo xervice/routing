@@ -114,4 +114,5 @@ class IntegrationTest extends \Codeception\Test\Unit
             $result['_controller']($result)
         );
     }
+
 }
