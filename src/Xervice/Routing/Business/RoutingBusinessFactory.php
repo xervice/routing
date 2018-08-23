@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Xervice\Routing;
+namespace Xervice\Routing\Business;
 
 
 use DataProvider\RoutingContextDataProvider;
@@ -9,30 +9,32 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection as SymfonyRouteCollection;
-use Xervice\Core\Factory\AbstractFactory;
-use Xervice\Routing\Business\Matcher\MatchProvider;
-use Xervice\Routing\Business\Matcher\MatchProviderInterface;
-use Xervice\Routing\Business\Route\RouteCollection;
-use Xervice\Routing\Business\Route\RouteCollectionInterface;
+use Xervice\Core\Business\Model\Factory\AbstractBusinessFactory;
+use Xervice\Routing\Business\Model\Matcher\MatchProvider;
+use Xervice\Routing\Business\Model\Matcher\MatchProviderInterface;
+use Xervice\Routing\Business\Model\Route\RouteCollection;
+use Xervice\Routing\Business\Model\Route\RouteCollectionInterface;
 
 /**
  * @method \Xervice\Routing\RoutingConfig getConfig()
  */
-class RoutingFactory extends AbstractFactory
+class RoutingBusinessFactory extends AbstractBusinessFactory implements RoutingBusinessFactoryInterface
 {
     /**
-     * @var \Xervice\Routing\Business\Route\RouteCollectionInterface
+     * @var \Xervice\Routing\Business\Model\Route\RouteCollectionInterface
      */
     private $routeCollection;
 
     /**
-     * @return \Xervice\Routing\Business\Matcher\MatchProvider
+     * @param \Symfony\Component\HttpFoundation\Request|null $request
+     *
+     * @return \Xervice\Routing\Business\Model\Matcher\MatchProviderInterface
      */
-    public function createMatcher(): MatchProviderInterface
+    public function createMatcher(Request $request = null): MatchProviderInterface
     {
         return new MatchProvider(
             $this->createUrlMatcher(),
-            $this->createRequest()
+            $request ?? $this->createRequest()
         );
     }
 
@@ -79,7 +81,7 @@ class RoutingFactory extends AbstractFactory
     }
 
     /**
-     * @return \Xervice\Routing\Business\Route\RouteCollectionInterface
+     * @return \Xervice\Routing\Business\Model\Route\RouteCollectionInterface
      */
     public function createRouteCollection(): RouteCollectionInterface
     {
@@ -89,7 +91,7 @@ class RoutingFactory extends AbstractFactory
     }
 
     /**
-     * @return \Xervice\Routing\Business\Route\RouteCollectionInterface
+     * @return \Xervice\Routing\Business\Model\Route\RouteCollectionInterface
      */
     public function getRouteCollection(): RouteCollectionInterface
     {

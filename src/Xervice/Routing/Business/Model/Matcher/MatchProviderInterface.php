@@ -1,6 +1,6 @@
 <?php
 
-namespace Xervice\Routing\Business\Matcher;
+namespace Xervice\Routing\Business\Model\Matcher;
 
 use Symfony\Component\HttpFoundation\Request;
 

@@ -4,7 +4,7 @@
 namespace Xervice\Routing;
 
 
-use Xervice\Core\Config\AbstractConfig;
+use Xervice\Core\Business\Model\Config\AbstractConfig;
 
 class RoutingConfig extends AbstractConfig
 {

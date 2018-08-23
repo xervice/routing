@@ -1,18 +1,18 @@
 <?php
 
 
-namespace Xervice\Routing;
+namespace Xervice\Routing\Business;
 
 
 use DataProvider\RouteCollectionDataProvider;
 use Symfony\Component\HttpFoundation\Request;
-use Xervice\Core\Facade\AbstractFacade;
+use Xervice\Core\Business\Model\Facade\AbstractFacade;
 
 /**
- * @method \Xervice\Routing\RoutingFactory getFactory()
+ * @method \Xervice\Routing\Business\RoutingBusinessFactory getFactory()
  * @method \Xervice\Routing\RoutingConfig getConfig()
  */
-class RoutingFacade extends AbstractFacade
+class RoutingFacade extends AbstractFacade implements RoutingFacadeInterface
 {
     /**
      * @param \DataProvider\RouteCollectionDataProvider $dataProvider
@@ -45,8 +45,8 @@ class RoutingFacade extends AbstractFacade
      *
      * @return array
      */
-    public function matchRequest(Request $request): array
+    public function matchRequest(Request $request = null): array
     {
-        return $this->getFactory()->createMatcher()->matchRequest($request);
+        return $this->getFactory()->createMatcher($request)->matchRequest();
     }
 }

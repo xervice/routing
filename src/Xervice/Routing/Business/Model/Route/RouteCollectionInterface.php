@@ -1,6 +1,6 @@
 <?php
 
-namespace Xervice\Routing\Business\Route;
+namespace Xervice\Routing\Business\Model\Route;
 
 use DataProvider\RouteCollectionDataProvider;
 

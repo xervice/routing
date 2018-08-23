@@ -3,15 +3,14 @@ namespace XerviceTest\Routing;
 
 use DataProvider\RouteCollectionDataProvider;
 use DataProvider\RouteDataProvider;
-use Xervice\Core\Locator\Dynamic\DynamicLocator;
-use Xervice\Routing\Business\Route\RouteCollection;
+use Xervice\Core\Business\Model\Locator\Dynamic\Business\DynamicBusinessLocator;
 
 /**
  * @method \Xervice\Routing\RoutingFacade getFacade()
  */
 class IntegrationTest extends \Codeception\Test\Unit
 {
-    use DynamicLocator;
+    use DynamicBusinessLocator;
 
     /**
      * @var \XerviceTest\XerviceTester
